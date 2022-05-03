@@ -1,14 +1,15 @@
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import CharacterList from "./views/Characters/List";
 
 export default function App() {
   return (
-  <>
-    <Switch>
-      <Route path='/characters'>
-        <CharacterList />
-      </Route>
-    </Switch>
-  </>
+    <CharacterList />
+  // <>
+  //   <Switch>
+  //     <Route path='/'>
+  //       <CharacterList />
+  //     </Route>
+  //   </Switch>
+  // </>
   );
 }

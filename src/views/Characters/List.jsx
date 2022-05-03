@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Card from "../../components/Card";
 
 
 
@@ -8,10 +9,16 @@ export default function CharacterList() {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         async function fetchCharacters() {
-            const res = fetch('https://rickandmortyapi.com/api/character');
+            const res = await fetch('https://rickandmortyapi.com/api/character');
             const { results } = await res.json();
-            console.log(results);
-            setCharacters(results);
+            const data = results.map((char) => ({
+                name: char.name,
+                image: char.image,
+                species: char.species,
+                status: char.status,
+
+            }))
+            setCharacters(data);
             setLoading(false);
         }
         fetchCharacters();
@@ -24,14 +31,21 @@ export default function CharacterList() {
               <p>Loading Pickle Rick</p>
           ) : (
             <>
-              <section>
+              <div>
                   <h2>Pickle Ricks Results</h2>
+                  <div>
                   {characters.map((char) => (
-                      <li key={char.id}>
-                          
-                      </li>
+                      
+                          <Card key={char.id} 
+                          name={char.name}
+                          image={char.image}
+                          species={char.species}
+                          status={char.status}
+                          />
+                    
                   ))}
-              </section>
+                </div>
+              </div>
             </>
           )}
           </>
