@@ -30,7 +30,7 @@ export default function CharacterList() {
           ) : (
             <>
               <div>
-                <h2>Pickle Ricks Results</h2>
+                <h2>Pickle Ricks Characters</h2>
                   <div>
                   {character.map((character) => (
                     <Link to={`/character/${character.id}`} key={character.id}>

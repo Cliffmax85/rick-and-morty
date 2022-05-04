@@ -29,6 +29,7 @@ return (
               <p>Species: {detail.species}</p>
               <p>Status: {detail.status}</p>
               <p>Gender: {detail.gender}</p>
+              <p>Location: {detail.location.name}</p>
             </div>
           )
       }
