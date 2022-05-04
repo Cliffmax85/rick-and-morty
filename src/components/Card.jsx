@@ -1,10 +1,10 @@
-export default function Card({ name, image, species, status }) {
+export default function Card({ character }) {
     return (
         <div>
-            <h3>{name}</h3>
-            <img src={image} alt={`image of ${name}`}/>
-            <p>Species: {species}</p>
-            <p>Status: {status}</p>
+            <h3>{character.name}</h3>
+            <img src={character.image} alt={`image of ${character.name}`}/>
+            <p>Species: {character.species}</p>
+            <p>Status: {character.status}</p>
         </div>
     )
 }

@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
+import { useRouteMatch } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Card from "../../components/Card";
+import { fetchRicks } from "../../services/fetchRicks";
 
 
 
 
 export default function CharacterList() {
-    const [characters, setCharacters] = useState([]);
+    // const { url, path } = useRouteMatch();
+    const [character, setCharacter] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         async function fetchCharacters() {
-            const res = await fetch('https://rickandmortyapi.com/api/character');
-            const { results } = await res.json();
-            const data = results.map((char) => ({
-                name: char.name,
-                image: char.image,
-                species: char.species,
-                status: char.status,
-
-            }))
-            setCharacters(data);
+            const res = await fetchRicks();
+            setCharacter(res.results);
             setLoading(false);
         }
         fetchCharacters();
@@ -34,15 +31,10 @@ export default function CharacterList() {
               <div>
                   <h2>Pickle Ricks Results</h2>
                   <div>
-                  {characters.map((char) => (
-                      
-                          <Card key={char.id} 
-                          name={char.name}
-                          image={char.image}
-                          species={char.species}
-                          status={char.status}
-                          />
-                    
+                  {character.map((character) => (
+                      <Card 
+                      key={character.id} character={character}
+                      />
                   ))}
                 </div>
               </div>
