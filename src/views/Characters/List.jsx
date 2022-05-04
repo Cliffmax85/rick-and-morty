@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Card from "../../components/Card";
 import { fetchRicks } from "../../services/fetchRicks";
+import Detail from "./Detail";
 
 
 
@@ -25,18 +26,18 @@ export default function CharacterList() {
           <h2>Mick & Worty</h2>
           <>
           {loading ? (
-              <p>Loading Pickle Rick</p>
+            <p>Loading Pickle Rick</p>
           ) : (
             <>
               <div>
-                  <h2>Pickle Ricks Results</h2>
+                <h2>Pickle Ricks Results</h2>
                   <div>
                   {character.map((character) => (
-                      <Card 
-                      key={character.id} character={character}
-                      />
+                    <Link to={`/character/${character.id}`} key={character.id}>
+                      <Card character={character} />
+                    </Link>  
                   ))}
-                </div>
+                  </div>
               </div>
             </>
           )}
