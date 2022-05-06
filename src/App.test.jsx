@@ -28,3 +28,18 @@ it('should take you to the detail page', async () => {
     await waitForElementToBeRemoved(screen.getByText(/loading character.../i));
     await screen.findByText('Location: Testicle Monster Dimension')
 })
+
+it('should test initial entries', async () => {
+  render(
+    <MemoryRouter
+      initialEntries={['character/1', '/character/2', '/character/3']}
+      initialIndex = {2}
+    >
+      <App />
+    </MemoryRouter>
+  );
+  await waitForElementToBeRemoved(screen.getByText(/loading character/i));
+
+  const summer = await screen.findByText('Summer Smith');
+  expect(summer.textContent).toEqual('Summer Smith');
+})
